@@ -49,7 +49,7 @@ export default function CreateOrganizationPage() {
       }
     } catch (err) {
       if (err instanceof z.ZodError) {
-        setError(err.errors[0].message);
+        setError((err as any).errors[0].message);
       } else {
         setError("An unexpected error occurred");
       }

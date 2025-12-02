@@ -53,12 +53,12 @@ export function OutlineSheet({
   const form = useForm<OutlineFormValues>({
     resolver: zodResolver(createOutlineSchema),
     defaultValues: {
-      header: outline?.header || "",
-      sectionType: outline?.sectionType || "TABLE_OF_CONTENTS",
-      status: outline?.status || "PENDING",
-      target: outline?.target || 0,
-      limit: outline?.limit || 0,
-      reviewer: outline?.reviewer || "ASSIM",
+      header: (outline?.header as string) || "",
+      sectionType: (outline?.sectionType as any) || "TABLE_OF_CONTENTS",
+      status: (outline?.status as any) || "PENDING",
+      target: (outline?.target as number) || 0,
+      limit: (outline?.limit as number) || 0,
+      reviewer: (outline?.reviewer as any) || "ASSIM",
     },
   });
 

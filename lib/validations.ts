@@ -22,7 +22,7 @@ export const reviewerEnum = z.enum(["ASSIM", "BINI", "MAMI"]);
 export const createOutlineSchema = z.object({
   header: z.string().min(1, "Header is required"),
   sectionType: sectionTypeEnum,
-  status: outlineStatusEnum.default("PENDING"),
+  status: outlineStatusEnum,
   target: z.number().int().min(0),
   limit: z.number().int().min(0),
   reviewer: reviewerEnum,

@@ -15,7 +15,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export default function JoinOrganizationPage() {
+import { Suspense } from "react";
+
+function JoinOrganizationContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [invitationId, setInvitationId] = useState("");
@@ -98,5 +100,13 @@ export default function JoinOrganizationPage() {
         </form>
       </Card>
     </div>
+  );
+}
+
+export default function JoinOrganizationPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <JoinOrganizationContent />
+    </Suspense>
   );
 }
