@@ -5,6 +5,24 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+// Validate required environment variables
+const requiredEnvVars = {
+  BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
+  BETTER_AUTH_URL: process.env.BETTER_AUTH_URL,
+  DATABASE_URL: process.env.DATABASE_URL,
+};
+
+const missingVars = Object.entries(requiredEnvVars)
+  .filter(([, value]) => !value)
+  .map(([key]) => key);
+
+if (missingVars.length > 0) {
+  console.error(`([LOG auth_config] ========= Missing required environment variables: ${missingVars.join(', ')})`);
+  throw new Error(`Missing required environment variables: ${missingVars.join(', ')}`);
+}
+
+console.log(`([LOG auth_config] ========= Better Auth initialized with baseURL: ${process.env.BETTER_AUTH_URL})`);
+
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",

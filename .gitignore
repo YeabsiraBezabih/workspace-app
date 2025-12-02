@@ -12,8 +12,12 @@
 
 # environment
 .env
+.env.example
+.env.*
 .env.local
 .env.*.local
+
+.cursorignore
 
 # testing
 /coverage
